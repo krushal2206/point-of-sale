@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_task.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt')]//div[hasclass('receipt-change')]" position="after">
+            <div t-if="receipt.note != null"><hr/>
+            Order Note: <t t-out="receipt.note"/> 
+            <hr/></div>
+        </xpath>
+        
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="inside">
+            <t t-if="receipt.partner.customer_phone_number"> <div style="font-weight:bold;">Customer:
+                <t t-esc='receipt.partner.customer_phone_number' />
+            </div></t>
+            <!-- <t env.pos.get_client().customer_phone_number">
+                <div style="font-weight:bold;">PHONE:
+                    <t t-esc="env.pos.get_client().customer_phone_number" />
+                </div>
+            </t> -->
+        </xpath> 
+    </t>
+</templates>
